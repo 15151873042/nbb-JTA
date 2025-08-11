@@ -1,0 +1,27 @@
+spring:
+  jta:
+    atomikos:
+      datasource:
+        # 连接池公共配置
+        max-pool-size: 10
+        min-pool-size: 10
+        borrow-connection-timeout: 60
+        login-timeout: 60
+        maintenance-interval: 60
+        max-idle-time: 60
+      transaction-manager:
+        # 事务超时时间（毫秒）
+        default-jta-timeout: 10000
+  datasource:
+    business1:
+      unique-resource-name: datasource1
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&rewriteBatchedStatements=false
+      username: root
+      password: root
+    business2:
+      unique-resource-name: datasource2
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&rewriteBatchedStatements=false
+      username: root
+      password: root

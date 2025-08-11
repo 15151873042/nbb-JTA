@@ -1,0 +1,27 @@
+spring:
+  jta:
+    atomikos:
+      datasource:
+        # 连接池公共配置
+        max-pool-size: 10
+        min-pool-size: 10
+        borrow-connection-timeout: 60
+        login-timeout: 60
+        maintenance-interval: 60
+        max-idle-time: 60
+      transaction-manager:
+        # 事务超时时间（毫秒）
+        default-jta-timeout: 10000
+  datasource:
+    business1:
+      unique-resource-name: datasource1
+      driver-class-name: com.kingbase8.Driver
+      url: jdbc:kingbase8://100.104.226.6:20001/cmclink_edi_center?compatibleMode=mysql&ignoreCase=true&ENCODING=utf-8
+      username: cmclink_edi
+      password: GSVBCEoez2v2V4ww
+    business2:
+      unique-resource-name: datasource2
+      driver-class-name: com.kingbase8.Driver
+      url: jdbc:kingbase8://100.104.226.6:20001/cmclink_basic_data?compatibleMode=mysql&ignoreCase=true&ENCODING=utf-8
+      username: cmclink_bdt
+      password: zkT73S8oMCuPOgxg

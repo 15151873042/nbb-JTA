@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.kingbase8.xa.KBXADataSource;
+import com.mysql.cj.jdbc.MysqlXADataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
@@ -44,10 +46,9 @@ public class Datasource1Config {
 
 
     // 配置主数据源（JTA兼容）
+    @Profile("kingbase")
     @Bean(name = "business1DataSource")
-    public DataSource business1DataSource() throws SQLException {
-//        MysqlXADataSource mysqlXADataSource = new MysqlXADataSource();
-//        mysqlXADataSource.setPinGlobalTxToPhysicalConnection(true);
+    public DataSource kingbaseDataSource() throws SQLException {
         KBXADataSource xaDatasource = new KBXADataSource();
         xaDatasource.setUrl(url);
         xaDatasource.setUser(username);
@@ -56,6 +57,22 @@ public class Datasource1Config {
         // 包装为Atomikos数据源（JTA事务管理）
         AtomikosDataSourceBean atomikosDataSource = new AtomikosDataSourceBean();
         atomikosDataSource.setXaDataSource(xaDatasource);
+        atomikosDataSource.setUniqueResourceName(uniqueResourceName);
+        return atomikosDataSource;
+    }
+    // 配置主数据源（JTA兼容）
+    @Profile("mysql")
+    @Bean(name = "business1DataSource")
+    public DataSource mysqlDataSource() throws SQLException {
+        MysqlXADataSource mysqlXADataSource = new MysqlXADataSource();
+        mysqlXADataSource.setPinGlobalTxToPhysicalConnection(true);
+        mysqlXADataSource.setUrl(url);
+        mysqlXADataSource.setUser(username);
+        mysqlXADataSource.setPassword(password);
+
+        // 包装为Atomikos数据源（JTA事务管理）
+        AtomikosDataSourceBean atomikosDataSource = new AtomikosDataSourceBean();
+        atomikosDataSource.setXaDataSource(mysqlXADataSource);
         atomikosDataSource.setUniqueResourceName(uniqueResourceName);
         return atomikosDataSource;
     }
