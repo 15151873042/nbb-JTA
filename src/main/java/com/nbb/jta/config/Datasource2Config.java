@@ -60,6 +60,7 @@ public class Datasource2Config {
         // 包装为Atomikos数据源（JTA事务管理）
         AtomikosDataSourceBean atomikosDataSource = new AtomikosDataSourceBean();
         atomikosDataSource.setXaDataSource(xaDatasource);
+        atomikosDataSource.setPoolSize(5);
         atomikosDataSource.setUniqueResourceName(uniqueResourceName);
         return atomikosDataSource;
     }
@@ -77,6 +78,7 @@ public class Datasource2Config {
         // 包装为Atomikos数据源（JTA事务管理）
         AtomikosDataSourceBean atomikosDataSource = new AtomikosDataSourceBean();
         atomikosDataSource.setXaDataSource(mysqlXADataSource);
+        atomikosDataSource.setPoolSize(5);
         atomikosDataSource.setUniqueResourceName(uniqueResourceName);
         return atomikosDataSource;
     }

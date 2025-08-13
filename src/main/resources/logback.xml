@@ -4,7 +4,7 @@
 
 
     <!-- 日志名称 -->
-    <property name="log.app_name" value="${log.app-name:-springboot-template}"/>
+    <property name="log.app_name" value="${log.app-name:-nbb-JTA}"/>
     <!-- 日志输出位置 -->
     <property name="log.home_dir" value="${log.home:-./logs}"></property>
     <!-- 日志最大保留天数 -->
@@ -63,7 +63,7 @@
 
     <root>
         <!-- 定义通用包（根）的日志输出级别 -->
-        <level value="info"/>
+        <level value="debug"/>
         <!-- 需要输出到哪些位置 -->
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="file-all"/>
