@@ -11,7 +11,7 @@ spring:
         max-idle-time: 60
       transaction-manager:
         # 事务超时时间（毫秒）
-        default-jta-timeout: 10000
+        default-jta-timeout: 23456
   datasource:
     business1:
       unique-resource-name: datasource1

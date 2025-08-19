@@ -17,12 +17,6 @@ public class TestController {
     @Autowired
     DictTypeService dictTypeService;
 
-    @RequestMapping("/list")
-    public PageDTO<DictTypeDO> list() {
-        PageDTO<DictTypeDO> page = dictTypeService.page();
-        return page;
-    }
-
     @RequestMapping("/insert")
     public String insert() {
         int count = dictTypeService.insert();

@@ -1,7 +1,6 @@
 package com.nbb.jta.service;
 
 import cn.hutool.core.util.IdUtil;
-import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.nbb.jta.domain.DictTypeDO;
 import com.nbb.jta.mapper.business1.DictType1Mapper;
 import com.nbb.jta.mapper.business2.DictType2Mapper;
@@ -19,13 +18,6 @@ public class DictTypeServiceImpl implements DictTypeService {
     private DictType1Mapper dictType1Mapper;
     @Resource
     private DictType2Mapper dictType2Mapper;
-
-
-    @Override
-    public PageDTO<DictTypeDO> page() {
-//        return dictTypeMapper.selectPage(new PageDTO<>(), new LambdaQueryWrapper<>());
-        return null;
-    }
 
     @Override
     public int insert() {
